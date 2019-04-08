@@ -4,5 +4,5 @@
 
 
 @section('content')
-
+<clock-view></clock-view>
 @endsection

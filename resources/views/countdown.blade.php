@@ -3,5 +3,5 @@
 @section('title', 'Countdown')
 
 @section('content')
-
-@sectionend
+<countdown></countdown>
+@endsection
