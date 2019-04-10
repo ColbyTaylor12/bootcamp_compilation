@@ -26,3 +26,7 @@ Route::get('/countdown', function () {
 Route::get('/tic-tac-toe', function () {
     return view('tic-tac-toe');
 });
+
+Route::get('/calculator', function () {
+    return view('calculator');
+});
