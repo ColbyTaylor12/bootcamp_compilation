@@ -37,6 +37,7 @@
                     <a href="/">Home</a>
                     <a href="/clock">Clock</a>
                     <a href="/countdown">Countdown</a>
+                    <a href="/tic-tac-toe">Tic Tac Toe</a>
                 </div>
     </div>
   

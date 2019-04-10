@@ -22,6 +22,8 @@ window.Vue = require('vue');
 
 Vue.component('clock-view', require('./components/ClockView.vue').default);
 Vue.component('countdown', require('./components/Countdown.vue').default);
+Vue.component('tictactoetile', require('./components/TicTacToeTile.vue').default);
+Vue.component('tictactoegrid', require('./components/TicTacToeGrid.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

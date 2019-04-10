@@ -63,7 +63,10 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
-
+        'img' => [
+            'driver' => 'local',
+            'root' => storage_path().'/img',
+        ],
     ],
 
 ];
