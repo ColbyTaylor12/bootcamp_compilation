@@ -1791,18 +1791,139 @@ __webpack_require__.r(__webpack_exports__);
     return {
       numArr: [["0", "1", "2", "3", "4"], ["5", "6", "7", "8", "9"]],
       opArr: [["", ".", "-", "/"], ["*", "+", "C", "="]],
-      displayStr: "",
       numBtnType: "Number",
-      opBtnType: "Operator"
+      opBtnType: "Operator",
+      display: "",
+      temp1: [],
+      temp2: "",
+      btnVal: "",
+      btnType: "",
+      lastBtn: "",
+      lastBtnType: "",
+      lastOp: ""
     };
   },
   components: {
     calcbutton: _CalculatorButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  methods: {},
   beforeDestroy: function beforeDestroy() {},
   created: function created() {},
-  computed: {}
+  computed: {
+    getTemp: function getTemp(obj) {
+      return this.temp1.push(Number(this.temp2));
+    }
+  },
+  methods: {
+    catchBtn: function catchBtn(obj) {
+      this.btnVal = obj.buttonValue;
+      this.btnType = obj.buttonType; //   this.display = this.display.concat(this.btnVal);
+
+      this.clickedBtn(obj);
+    },
+    clickedBtn: function clickedBtn(obj) {
+      if (this.btnType == "Operator" && this.btnVal == "+") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "+";
+        this.lastOp = "+";
+        this.fill(obj);
+      } else if (this.btnType == "Operator" && this.btnVal == "-") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "-";
+        this.lastOp = "-";
+        this.fill(obj);
+      } else if (this.btnType == "Operator" && this.btnVal == "/") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "/";
+        this.lastOp = "/";
+        this.fill(obj);
+      } else if (this.btnType == "Operator" && this.btnVal == "*") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "*";
+        this.lastOp = "*";
+        this.fill(obj);
+      } else if (this.btnType == "Operator" && this.btnVal == "C") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "C";
+        this.clear(obj);
+      } else if (this.btnType == "Operator" && this.btnVal == "=") {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = "=";
+        this.equals(obj);
+      } else {
+        this.lastBtnType = this.btnType;
+        this.lastBtn = Number(this.btnVal);
+        this.display = this.display.concat(this.btnVal);
+      }
+    },
+    fill: function fill(obj) {
+      this.temp2 = this.temp2.concat(this.display);
+      this.display = "";
+      this.temp1 = this.getTemp(obj);
+      return; //   if (this.lastBtnType == "Operator") {
+      //     this.equals(obj);
+      //     this.lastBtnType = "";
+      //     return;
+      //   } else {
+      //     this.clear(obj);
+      //   }
+    },
+    clear: function clear(obj) {
+      this.temp1 = [];
+      this.display = "";
+      this.btnVal = "";
+      this.btnType = "";
+      this.lastBtn = "";
+      this.lastBtnType = "";
+      this.lastOp = "";
+      this.temp2 = "";
+    },
+    reset: function reset(obj) {
+      this.temp1 = [];
+      this.btnVal = "";
+      this.btnType = "";
+      this.lastBtn = "";
+      this.lastBtnType = "";
+      this.lastOp = "";
+      this.temp2 = "";
+    },
+    equals: function equals(obj) {
+      this.temp1.push(Number(this.display));
+
+      function addSum(total, num) {
+        return total + num;
+      }
+
+      function minSum(total, num) {
+        return total - num;
+      }
+
+      function divSum(total, num) {
+        return total / num;
+      }
+
+      function multSum(total, num) {
+        return total * num;
+      }
+
+      if (this.lastOp == "+") {
+        this.display = this.temp1.reduce(addSum);
+        this.reset(obj);
+        return;
+      } else if (this.lastOp == "-") {
+        this.display = this.temp1.reduce(minSum);
+        this.reset(obj);
+        return;
+      } else if (this.lastOp == "/") {
+        this.display = this.temp1.reduce(divSum);
+        this.reset(obj);
+        return;
+      } else if (this.lastOp == "*") {
+        this.display = this.temp1.reduce(multSum);
+        this.reset(obj);
+        return;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -1822,22 +1943,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "calcbutton",
   props: {
     buttonValue: {
       required: true,
       type: String
-    } // buttonType: { required:true, type: String},
-
+    },
+    buttonType: {
+      required: true,
+      type: String
+    }
   },
   data: function data() {
-    return {};
+    return {//   displayStr: "",
+      //   displayArr: [],
+    };
   },
-  methods: {},
+  methods: {
+    // setDisplayString: function() {
+    //   this.displayStr = this.getDisplay;
+    // },
+    setBtnType: function setBtnType() {
+      this.buttonType = this.getBtnType;
+    },
+    onButtonClick: function onButtonClick() {
+      //   this.$emit("onDisplayHeader", { displayStr: this.displayStr });
+      this.$emit("onPassButton", {
+        buttonValue: this.buttonValue,
+        buttonType: this.buttonType
+      }); //   this.$emit("onPassButton", { buttonTypr: this.buttonType });
+    },
+    setBtnVal: function setBtnVal() {
+      this.buttonValue = this.getBtnVal;
+    } // addVal: function(){
+    //     if(this.buttonType == "Number"){
+    //         displayArr.push(this.buttonValue)
+    //     }else if(this.buttonType == "Operator" && this.buttonValue != "=" || "C"){
+    //     displayArr.push(this.buttonValue);
+    //     } else if(this.buttonType == "Operator" && this.buttonValue == "C") {
+    //        this.clear;
+    //     } else {
+    //         this.equals;
+    //     }
+    // },
+    // equals: function(){
+    //     this.getfinal;
+    //     eval(this.displayStr);
+    // },
+    // clear: function(){
+    //     this.displayStr = "";
+    //     this.displayArr = [];
+    // }
+
+  },
   beforeDestroy: function beforeDestroy() {},
-  created: function created() {},
-  computed: {}
+  created: function created() {
+    // this.setDisplayString();
+    this.setBtnVal;
+    this.setBtnType;
+  },
+  computed: {
+    // getDisplay: function() {
+    //   return this.displayStr;
+    // },
+    getBtnVal: function getBtnVal() {
+      return this.buttonValue;
+    },
+    getBtnType: function getBtnType() {
+      return this.buttonType;
+    } // getfinal: function(){
+    //     return this.displayStr = this.displayArr.join();
+    // }
+
+  }
 });
 
 /***/ }),
@@ -38001,7 +38185,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c(
+      "div",
+      { staticClass: "jumbotron text-center", attrs: { id: "display" } },
+      [_c("h1", [_vm._v(_vm._s(_vm.display))])]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -38020,7 +38208,8 @@ var render = function() {
                 { key: str, staticClass: "col" },
                 [
                   _c("calcbutton", {
-                    attrs: { buttonValue: str, buttonType: _vm.numBtnType }
+                    attrs: { buttonValue: str, buttonType: _vm.numBtnType },
+                    on: { onPassButton: _vm.catchBtn }
                   })
                 ],
                 1
@@ -38040,7 +38229,8 @@ var render = function() {
                 { key: str, staticClass: "col" },
                 [
                   _c("calcbutton", {
-                    attrs: { buttonValue: str, buttonType: _vm.opBtnType }
+                    attrs: { buttonValue: str, buttonType: _vm.opBtnType },
+                    on: { onPassButton: _vm.catchBtn }
                   })
                 ],
                 1
@@ -38054,18 +38244,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "jumbotron text-center", attrs: { id: "display" } },
-      [_c("h1", [_vm._v("This is where the string displays")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38099,7 +38278,8 @@ var render = function() {
           width: "100px",
           height: "100px"
         },
-        attrs: { type: "button" }
+        attrs: { type: "button" },
+        on: { click: _vm.onButtonClick }
       },
       [_vm._v(_vm._s(_vm.buttonValue))]
     )
@@ -38223,7 +38403,7 @@ var render = function() {
           "a",
           {
             staticClass: "btn btn-primary",
-            attrs: { href: "/tic-tac-toe", role: "button" }
+            attrs: { href: "", role: "button" }
           },
           [_vm._v("Reset")]
         )
@@ -50611,14 +50791,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/CalculatorButton.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CalculatorButton_vue_vue_type_template_id_8bae8582_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CalculatorButton.vue?vue&type=template&id=8bae8582&scoped=true& */ "./resources/js/components/CalculatorButton.vue?vue&type=template&id=8bae8582&scoped=true&");
 /* harmony import */ var _CalculatorButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalculatorButton.vue?vue&type=script&lang=js& */ "./resources/js/components/CalculatorButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CalculatorButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CalculatorButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50648,7 +50829,7 @@ component.options.__file = "resources/js/components/CalculatorButton.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/CalculatorButton.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

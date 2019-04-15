@@ -9,7 +9,7 @@
         <tictactoetile :tileId="3 * i + j" v-on:whoclick="whoclick"></tictactoetile>
       </div>
     </div>
-    <a href="/tic-tac-toe" class="btn btn-primary" role="button">Reset</a>
+    <a href="" class="btn btn-primary" role="button">Reset</a>
     </div>
   </div>
 </template>
