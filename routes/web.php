@@ -30,3 +30,7 @@ Route::get('/tic-tac-toe', function () {
 Route::get('/calculator', function () {
     return view('calculator');
 });
+
+Route::get('/weather-app', function () {
+    return view('weather-app');
+});

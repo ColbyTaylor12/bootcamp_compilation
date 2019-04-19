@@ -26,6 +26,7 @@ Vue.component('tictactoetile', require('./components/TicTacToeTile.vue').default
 Vue.component('tictactoegrid', require('./components/TicTacToeGrid.vue').default);
 Vue.component('calbutton', require('./components/CalculatorButton.vue').default);
 Vue.component('fullcalc', require('./components/Calculator.vue').default);
+Vue.component('weather-app', require('./components/Weather.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
