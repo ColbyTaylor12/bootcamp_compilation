@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Tic Tac Toe')
+@section('title', 'Weather')
 
 @section('content')
 <weather-app></weather-app>

@@ -2278,6 +2278,198 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weather.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Weather.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "weather-app",
+  data: function data() {
+    return {
+      zipcode: "",
+      error: "",
+      city: "",
+      temp: "",
+      kTemp: "",
+      fTemp: "",
+      cTemp: "",
+      kelvin: "",
+      fahrenheit: "",
+      celsius: "",
+      condition: "",
+      weatherIcon: "",
+      weatherInfoDiv: false,
+      infoToWatch: ""
+    };
+  },
+  methods: {
+    setData: function setData() {
+      console.log(this.info);
+      this.city = this.getCity();
+      this.condition = this.getCondition();
+      this.kTemp = this.getK();
+      this.convertTemp();
+      this.weatherIcon = this.getIcon();
+    },
+    getZipCode: function getZipCode() {
+      if (this.zipcode !== '') {
+        var self = this;
+        axios.get('https://cors-anywhere.herokuapp.com/' + 'http://api.openweathermap.org/data/2.5/weather?zip=' + this.zipcode + ',us&APPID=90c01e21759804b616fef1fd206d287a').then(function (response) {
+          self.info = response.data;
+          self.setData();
+        }); //show info div
+
+        this.weatherInfoDiv = true; //hide error
+
+        this.error = "";
+      } else {
+        this.error = 'Please enter a zip code';
+        this.weatherInfo = false;
+      }
+    },
+    getIcon: function getIcon() {
+      return "http://openweathermap.org/img/w/" + this.info.weather[0].icon + ".png";
+    },
+    getCity: function getCity() {
+      return this.info.name;
+    },
+    getCondition: function getCondition() {
+      return this.info.weather[0].description;
+    },
+    getK: function getK() {
+      return this.info.main.temp;
+    },
+    convertTemp: function convertTemp() {
+      this.kelvin = Math.round(this.kTemp) + "°" + " K";
+      this.fahrenheit = Math.round(9 / 5 * (parseInt(this.kTemp) - 273) + 32) + "°" + " F";
+      this.celsius = Math.round(parseInt(this.kTemp) - 273.15) + "°" + " C";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -38460,6 +38652,255 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weather.vue?vue&type=template&id=41e7714e&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Weather.vue?vue&type=template&id=41e7714e& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "container center pt-5" }, [
+      _c("h1", [_vm._v("Weather")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.zipcode,
+              expression: "zipcode"
+            }
+          ],
+          staticClass: "box",
+          attrs: { id: "zipcode", name: "zipcode", type: "text" },
+          domProps: { value: _vm.zipcode },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.getZipCode($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.zipcode = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-info", on: { click: _vm.getZipCode } },
+          [_vm._v("Check Your Weather")]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", { staticClass: "weather-error" }, [_vm._v(_vm._s(_vm.error))])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: this.weatherInfoDiv,
+            expression: "this.weatherInfoDiv"
+          }
+        ],
+        staticStyle: { display: "none" },
+        attrs: { id: "WeatherStuff" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("img", {
+                staticClass: "weather-Icon",
+                attrs: { id: "weatherIcon", src: _vm.weatherIcon }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("label", { staticClass: "center" }, [_vm._v(_vm._s(_vm.city))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("label", { attrs: { id: "fTemp" } }, [
+                _vm._v(_vm._s(_vm.fahrenheit))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("label", { attrs: { id: "cTemp" } }, [
+                _vm._v(_vm._s(_vm.celsius))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("label", [_vm._v(_vm._s(_vm.condition))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col center" }, [
+              _c("img", {
+                staticClass: "weather-Img",
+                attrs: { id: "weatherIcon", src: _vm.weatherIcon }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(3)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col center weather-purple" }, [
+        _c("strong", [_vm._v("City")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col center weather-purple" }, [
+        _c("strong", [_vm._v("Temperature")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col center weather-purple" }, [
+        _c("strong", [_vm._v("Condition")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "footer" }, [
+      _c("details", [
+        _c("p", [
+          _vm._v("Weather API: "),
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://openweathermap.org/current#zip",
+                target: "_blank"
+              }
+            },
+            [_vm._v("https://openweathermap.org/current#zip")]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -50627,6 +51068,7 @@ Vue.component('tictactoetile', __webpack_require__(/*! ./components/TicTacToeTil
 Vue.component('tictactoegrid', __webpack_require__(/*! ./components/TicTacToeGrid.vue */ "./resources/js/components/TicTacToeGrid.vue")["default"]);
 Vue.component('calbutton', __webpack_require__(/*! ./components/CalculatorButton.vue */ "./resources/js/components/CalculatorButton.vue")["default"]);
 Vue.component('fullcalc', __webpack_require__(/*! ./components/Calculator.vue */ "./resources/js/components/Calculator.vue")["default"]);
+Vue.component('weather-app', __webpack_require__(/*! ./components/Weather.vue */ "./resources/js/components/Weather.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51199,6 +51641,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TicTacToeTile_vue_vue_type_template_id_04a58d75_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TicTacToeTile_vue_vue_type_template_id_04a58d75_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Weather.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Weather.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Weather.vue?vue&type=template&id=41e7714e& */ "./resources/js/components/Weather.vue?vue&type=template&id=41e7714e&");
+/* harmony import */ var _Weather_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Weather.vue?vue&type=script&lang=js& */ "./resources/js/components/Weather.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Weather_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Weather.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Weather.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Weather.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Weather_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Weather.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weather.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Weather_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Weather.vue?vue&type=template&id=41e7714e&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Weather.vue?vue&type=template&id=41e7714e& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Weather.vue?vue&type=template&id=41e7714e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weather.vue?vue&type=template&id=41e7714e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weather_vue_vue_type_template_id_41e7714e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
