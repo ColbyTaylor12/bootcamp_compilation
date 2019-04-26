@@ -35,9 +35,5 @@ Vue.component('weather-app', require('./components/Weather.vue').default);
  */
 
 const app = new Vue({
-    el: '#app',
-    // components:{
-    //     ClockView,
-    // }
-    
+    el: '#app', 
 });
